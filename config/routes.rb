@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       end
       resources :resumes
     end
+
+    resources :location
   end
 
   resources :jobs  do
