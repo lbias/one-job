@@ -14,9 +14,14 @@ Rails.application.routes.draw do
 
   resources :jobs  do
     resources :resumes
+    member do
+      post :add
+      post :remove
+    end
   end
 
   namespace :account do
     resources :resumes
+    resources :collections
   end
 end

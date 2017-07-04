@@ -12,6 +12,19 @@
 
     <!-- 上方右侧区块 Start -->
     <div class="col-md-3 job-action-box">
+      <!-- 是否已收藏 -->
+      <div>
+        <% if current_user && current_user.is_member_of?(@job) %>
+          <%= link_to remove_job_path(@job), method: :post, class: "btn btn-lg btn-primary" do %>
+            <span class="fa fa-star"></span> 已收藏
+          <% end %>
+        <% else %>
+          <%= link_to add_job_path(@job), method: :post, class: "btn btn-lg btn-default" do %>
+            <span class="fa fa-star-o"></span> 收藏
+          <% end %>
+        <% end %>
+      </div>
+      <div>
       <!-- 是否投过简历 -->
       <div>
         <% if @resumes.length > 0 %>
