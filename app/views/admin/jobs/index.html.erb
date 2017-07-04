@@ -23,7 +23,7 @@
         <tbody>
           <% @jobs.each do |job| %>
             <tr class="job-list <%= render_job_hidden(job) %>">
-              <td class="title"><span class="<%= render_job_status(job) %>"></span> <%= link_to(job.name, job_path(job)) %></td>
+              <td class="title"><span class="<%= render_job_status(job) %>"></span> <%= link_to(job.name, admin_job_path(job)) %></td>
               <td>#</td>
               <td><%= job.company %></td>
               <td>#</td>
