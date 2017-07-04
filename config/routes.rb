@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   resources :jobs  do
     resources :resumes
   end
+
+  namespace :account do
+    resources :resumes
+  end
 end
