@@ -3,7 +3,7 @@ class Admin::JobsController < ApplicationController
   before_action :find_job_and_check_permission , only: [:edit, :update]
 
   def index
-    @jobs = Job.where(:user => current_user)
+    @jobs = Job.where(:user => current_user).recent
   end
 
   def show
@@ -34,6 +34,20 @@ class Admin::JobsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def publish
+    @job = Job.find(params[:id])
+    @job.is_hidden = false
+    @job.save
+    redirect_to :back
+  end
+
+  def hide
+    @job = Job.find(params[:id])
+    @job.is_hidden = true
+    @job.save
+    redirect_to :back
   end
 
 private
