@@ -1,6 +1,7 @@
 class Admin::JobsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_job_and_check_permission , only: [:edit, :update]
+  before_action :require_is_admin
 
   def index
     @jobs = Job.where(:user => current_user).recent
