@@ -1,0 +1,44 @@
+<div class="job-content">
+  <!-- Jobs 上方区块 Start -->
+  <div class="row">
+    <!-- 上方左侧区块 Start -->
+    <div class="col-md-7 col-md-offset-1 job-info-box">
+      <h1><%= @job.name %><span class="company">  / <%= @job.company %></span></h1>
+      <p>
+        <span class="wage"><%= @job.wage_lower_bound %> k ~ <%= @job.wage_upper_bound %> k </span> /
+       </p>
+      <p class="created"><%= @job.created_at.strftime("%Y-%m-%d") %> <span class="website">发布于职赢网</span></p>
+    </div>
+
+    <!-- 上方右侧区块 Start -->
+    <div class="col-md-3 job-action-box">
+      <!-- 是否投过简历 -->
+      <div>
+        <% if @resumes.length > 0 %>
+          <%= link_to("已投过简历", '#', class: "btn btn-lg btn-danger") %>
+        <% else %>
+          <%= link_to("投递简历", new_job_resume_path(@job), class: "btn btn-lg btn-success") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <hr style="width:85%" />
+  
+  <!-- Jobs 下方区块 Start -->
+  <div class="row">
+    <!-- 下方左侧区块 Start -->
+    <div class="col-md-7 col-md-offset-1 job-content-box">
+      <div class="content-info">
+        <h4>职位描述：</h4>
+        <p><%= simple_format(@job.content) %></p>
+      </div>
+      <hr />
+      <div class="mail-info">
+        <h4>联络信息：</h4>
+        <p class="email"><span class="fa fa-envelope"></span> <%= @job.contact_mail %></p>
+      </div>
+    </div>
+  </div>
+
+</div>
