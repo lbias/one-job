@@ -22,5 +22,6 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :resumes
+    resources :collections
   end
 end
