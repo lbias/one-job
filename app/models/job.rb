@@ -1,6 +1,8 @@
 class Job < ApplicationRecord
   belongs_to :user
-  has_many :resumes, dependent: :destroy  
+  has_many :resumes, dependent: :destroy
+  has_many :collections, dependent: :destroy
+  has_many :members, through: :collections, source: :user
 
   scope :recent, -> { order('created_at DESC') }
   scope :published, -> { where(is_hidden: false) }
