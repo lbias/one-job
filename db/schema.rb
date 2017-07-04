@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170702180025) do
+ActiveRecord::Schema.define(version: 20170704054534) do
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.text "content"
+    t.string "company"
+    t.integer "category_id"
+    t.integer "location_id"
+    t.integer "wage_lower_bound"
+    t.integer "wage_upper_bound"
+    t.string "contact_mail"
+    t.boolean "is_hidden", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +40,9 @@ ActiveRecord::Schema.define(version: 20170702180025) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.boolean "is_admin", default: false
+    t.boolean "is_website_admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
