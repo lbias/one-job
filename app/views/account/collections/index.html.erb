@@ -19,6 +19,9 @@
           <div class="info-mid">
             <%= collection.job.wage_lower_bound %> k ~ <%= collection.job.wage_upper_bound %> k
           </div>
+          <div class="info-bot">
+            <span class="category"><span class="<%= collection.job.category.icon %>"> <%= collection.job.category.name %></span>
+          </div>          
         </div>
 
         <!-- 公司信息 -->
@@ -40,7 +43,7 @@
           </div>
           <div class="company-bot">
             <span class="fa fa-map-marker"></span><span><%= collection.job.location.name %></span>
-          </div>          
+          </div>
         </div>
       </div>
     <% end %>

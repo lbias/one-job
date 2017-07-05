@@ -7,6 +7,7 @@ class Admin::JobsController < ApplicationController
 
   def index
     @locations = Location.published.sortA
+    @categorys = Category.published.sortA
     @jobs = Job.where(:user => current_user).recent
   end
 
@@ -17,6 +18,7 @@ class Admin::JobsController < ApplicationController
   def new
     @job = Job.new
     @locations = Location.published.sortA
+    @categorys = Category.published.sortA
   end
 
   def create
@@ -31,6 +33,7 @@ class Admin::JobsController < ApplicationController
 
   def edit
     @locations = Location.published.sortA
+    @categorys = Category.published.sortA
   end
 
   def update
