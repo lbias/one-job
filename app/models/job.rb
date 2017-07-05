@@ -4,6 +4,7 @@ class Job < ApplicationRecord
   has_many :collections, dependent: :destroy
   has_many :members, through: :collections, source: :user
   belongs_to :location
+  belongs_to :category
 
   scope :recent, -> { order('created_at DESC') }
   scope :published, -> { where(is_hidden: false) }
@@ -11,7 +12,8 @@ class Job < ApplicationRecord
   validates :name, presence: { message: "请填写职称" }
   validates :content, presence: { message: "请填写职位描述" }
   validates :company, presence: { message: "请填写公司名称" }
-  validates :location, presence: { message: "请选择工作地点" }  
+  validates :location, presence: { message: "请选择工作地点" }
+  validates :category, presence: { message: "请选择职位类型" }
   validates :wage_lower_bound, presence: { message: "请填写最低薪水" }
   validates :wage_upper_bound, presence: { message: "请填写最高薪水" }
   validates :wage_lower_bound, numericality: { less_than: :wage_upper_bound, message: "薪水下限不能高于薪水上限" }
