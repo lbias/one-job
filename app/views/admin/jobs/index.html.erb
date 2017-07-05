@@ -1,8 +1,78 @@
 <div class="col-md-12">
   <div class="row">
-    <!--=== 新增职位 ===-->
-    <div class="job">
-      <%= link_to("新增职位", new_admin_job_path, class: "btn btn-primary pull-right action-btn") %>
+    <div class="col-md-12 btn-group admin-select-job-box">
+      <!-- 工作地点下拉选单 -->
+      <div class="dropdown btn-group clearfix">
+        <% if params[:location].present? %>
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <%= params[:location] %> <span class="caret"></span>
+          </button>
+        <% else %>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            工作地点 <span class="caret"></span>
+          </button>
+        <% end %>
+        <ul class="dropdown-menu" selection aria-labelledby="dropdownMenuDivider">
+          <% @locations.each do |location| %>
+            <li><%= link_to(location.name, admin_jobs_path(:location => location.name)) %></li>
+          <% end %>
+          <li><%= link_to("所有城市", admin_jobs_path(:location => "所有城市") ) %></li>
+        </ul>
+      </div>
+
+      <!-- 职位类型下拉选单 -->
+      <div class="dropdown btn-group clearfix">
+        <% if params[:category].present? %>
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <%= params[:category] %> <span class="caret"></span>
+          </button>
+        <% else %>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            职位类型 <span class="caret"></span>
+          </button>
+        <% end %>
+        <ul class="dropdown-menu" selection aria-labelledby="dropdownMenuDivider">
+          <% @categorys.each do |category| %>
+            <li><%= link_to(category.name, admin_jobs_path(:category => category.name)) %></li>
+          <% end %>
+          <li><%= link_to("所有类型", admin_jobs_path(:category => "所有类型") ) %></li>
+        </ul>
+      </div>
+
+      <!-- 月薪下拉选单 -->
+      <div class="dropdown btn-group clearfix">
+        <% if params[:wage].present? %>
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <%= params[:wage] %> <span class="caret"></span>
+          </button>
+        <% else %>
+          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            月薪 <span class="caret"></span>
+          </button>
+        <% end %>
+        <ul class="dropdown-menu" selection aria-labelledby="dropdownMenuDivider">
+          <li>
+            <%= link_to("5k以下", admin_jobs_path(:wage => "5k以下")) %>
+          </li>
+          <li>
+            <%= link_to("5~10k", admin_jobs_path(:wage => "5~10k")) %>
+          </li>
+          <li>
+            <%= link_to("10~15k", admin_jobs_path(:wage => "10~15k")) %>
+          </li>
+          <li>
+            <%= link_to("15~25k", admin_jobs_path(:wage => "15~25k")) %>
+          </li>
+          <li>
+            <%= link_to("25k以上", admin_jobs_path(:wage => "25k以上")) %>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 新增职位 -->
+      <div class="job">
+        <%= link_to("新增职位", new_admin_job_path, class: "btn btn-primary pull-right action-btn") %>
+      </div>
     </div>
   </div>
 
@@ -64,5 +134,5 @@
     <div class="text-center">
       <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
     </div>
-  </div>  
+  </div>
 </div>
