@@ -4,7 +4,7 @@ class JobsController < ApplicationController
   def index
     @locations = Location.published.sortA
     @categorys = Category.published.sortA
-    @jobs = Job.published.recent
+    @jobs = Job.published.recent.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
