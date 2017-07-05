@@ -8,7 +8,7 @@ class Admin::JobsController < ApplicationController
   def index
     @locations = Location.published.sortA
     @categorys = Category.published.sortA
-    @jobs = Job.where(:user => current_user).recent
+    @jobs = Job.where(:user => current_user).recent.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show

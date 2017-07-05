@@ -60,4 +60,9 @@
       <h3 class="no-data">目前尚未发布任何职位哦，赶快去发布吧。</h3>
     <% end %>
   </div>
+  <div class="col-md-12 job-bottom">
+    <div class="text-center">
+      <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>  
 </div>

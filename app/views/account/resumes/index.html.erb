@@ -21,7 +21,7 @@
           </div>
           <div class="info-bot">
             <span class="category"><span class="<%= resume.job.category.icon %>"> <%= resume.job.category.name %></span>
-          </div>          
+          </div>
         </div>
 
         <!-- 公司信息 -->
@@ -48,6 +48,11 @@
       </div>
     <% end %>
   </div>
+  <div class="col-md-10 col-md-offset-1 job-bottom">
+    <div class="text-center">
+      <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>  
 <% else %>
   <div class="col-md-12 job-limit-box text-center">
     <h2>你还没投递过任何职位哦！</h2><br />
