@@ -19,6 +19,15 @@ Rails.application.routes.draw do
         post :down
       end
     end
+
+    resources :categories do
+      member do
+        post :publish
+        post :hide
+        post :up
+        post :down
+      end
+    end
   end
 
   resources :jobs  do
