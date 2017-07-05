@@ -21,7 +21,7 @@
           </div>
           <div class="info-bot">
             <span class="category"><span class="<%= collection.job.category.icon %>"> <%= collection.job.category.name %></span>
-          </div>          
+          </div>
         </div>
 
         <!-- 公司信息 -->
@@ -47,6 +47,11 @@
         </div>
       </div>
     <% end %>
+  </div>
+  <div class="col-md-10 col-md-offset-1 job-bottom">
+    <div class="text-center">
+      <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+    </div>
   </div>
 <% else %>
   <div class="col-md-12 job-limit-box text-center">
