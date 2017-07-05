@@ -26,4 +26,8 @@ class User < ApplicationRecord
   def remove_collection!(job)
     collected_jobs.delete(job)
   end
+
+  def is_member_of?(job)
+    collected_jobs.include?(job)
+  end  
 end

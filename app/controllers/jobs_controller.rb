@@ -1,6 +1,8 @@
 class JobsController < ApplicationController
+  before_action :authenticate_user!, only: [:add, :remove]
 
   def index
+    @locations = Location.published.sortA
     @jobs = Job.published.recent
   end
 

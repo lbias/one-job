@@ -10,6 +10,14 @@ Rails.application.routes.draw do
       end
       resources :resumes
     end
+
+    resources :locations
+      member do
+        post :publish
+        post :hide
+        post :up
+        post :down        
+      end
   end
 
   resources :jobs  do
