@@ -27,12 +27,15 @@
                 <%= link_to add_job_path(job), method: :post do %>
                   <span class="fa fa-star-o"></span>
                 <% end %>
-              <% end %>              
+              <% end %>
             </div>
 
             <div class="company-mid">
               <span class="fa fa-envelope"></span><span><%= job.contact_mail %></span>
             </div>
+            <div class="company-bot">
+              <span class="fa fa-map-marker"></span><span><%= job.location.name %></span>
+            </div>            
           </div>
 
         </div>
