@@ -5,6 +5,9 @@ class JobsController < ApplicationController
     @locations = Location.published.sortA
     @categorys = Category.published.sortA
 
+    # 随机推荐五个职位
+    @suggests = Job.published.random5
+
     # 目前只能单个条件筛选
     # 判断是否筛选城市
     if params[:location].present?
@@ -52,6 +55,8 @@ class JobsController < ApplicationController
   def show
     @job = Job.find(params[:id])
     @category = @job.category
+    # 随机推荐五个相同类型的职位（去除当前职位）
+    @sames = Job.where(:is_hidden => false, :category => @job.category).where.not(:id => @job.id ).random5
     # 该用户投递此职位的简历数量
     @resumes = Resume.where(:job => @job, :user => current_user)
     if @job.is_hidden
