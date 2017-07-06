@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :name, presence: { message: "请填写真实姓名" }
+
   has_many :jobs
   has_many :resumes
   has_many :collections
@@ -29,5 +31,5 @@ class User < ApplicationRecord
 
   def is_member_of?(job)
     collected_jobs.include?(job)
-  end  
+  end
 end
