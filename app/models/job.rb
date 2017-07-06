@@ -8,6 +8,7 @@ class Job < ApplicationRecord
 
   scope :recent, -> { order('created_at DESC') }
   scope :published, -> { where(is_hidden: false) }
+  scope :random5, -> { limit(5).order("RANDOM()") }
   scope :wage1, -> { where('wage_lower_bound <= 5 or wage_upper_bound <= 5') }
   scope :wage2, -> { where('wage_lower_bound between 5 and 10 or wage_upper_bound between 5 and 10') }
   scope :wage3, -> { where('wage_lower_bound between 10 and 15 or wage_upper_bound between 10 and 15') }
