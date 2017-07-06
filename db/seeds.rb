@@ -153,6 +153,7 @@ if User.find_by(email: 'website_admin@test.com').nil?
   u.email = 'website_admin@test.com'
   u.password = '11111111'
   u.password_confirmation = '11111111'
+  u.is_admin = true
   u.is_website_admin = true
   u.save
   puts '创建超级管理员*1'
