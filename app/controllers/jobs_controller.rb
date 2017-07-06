@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :authenticate_user!, only: [:add, :remove]
+  before_action :validate_search_key, only: [:search]
 
   def index
     @locations = Location.published.sortA
@@ -79,4 +80,28 @@ class JobsController < ApplicationController
     end
     redirect_to :back
   end
+
+  def search
+    if @query_string.present?
+      # 显示符合关键字的公开职位
+      search_result = Job.joins(:location).ransack(@search_criteria).result(:distinct => true)
+      @jobs = search_result.published.paginate(:page => params[:page], :per_page => 10 )
+      # 随机推荐五个职位
+      @suggests = Job.published.random5
+    end
+  end
+
+  protected
+
+  def validate_search_key
+    # 去除特殊字符
+    @query_string = params[:keyword].gsub(/\\|\'|\/|\?/, "") if params[:keyword].present?
+    @search_criteria = search_criteria(@query_string)
+  end
+
+  def search_criteria(query_string)
+    # 筛选多个栏位
+    { :name_or_company_or_location_name_cont => query_string }
+  end
+
 end

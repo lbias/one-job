@@ -48,6 +48,7 @@ gem "font-awesome-rails"
 gem 'carrierwave'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem 'ransack'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

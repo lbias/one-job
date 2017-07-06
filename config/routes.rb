@@ -36,6 +36,9 @@ Rails.application.routes.draw do
       post :add
       post :remove
     end
+    collection do
+      get :search
+    end    
   end
 
   namespace :account do
