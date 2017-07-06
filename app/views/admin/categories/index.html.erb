@@ -5,50 +5,59 @@
         <thead>
           <tr>
             <td colspan="6" class="title-box">
-              <div class="title"><h2><span class="fa fa-location-arrow"></span> 工作地点</h2></div>
-              <div class="button"><%= link_to("新增工作地点", new_admin_location_path, class: "btn btn-primary pull-right") %></div>
+              <div class="title"><h2><span class="fa fa-cogs"></span> 职位类型</h2></div>
+              <div class="button"><%= link_to("新增职位类型", new_admin_category_path, class: "btn btn-primary pull-right") %></div>
             </td>
           </tr>
         </thead>
         <tbody>
           <% i = 1 %>
-          <% @locations.each do |location| %>
-          <% if i%2 == 1%>
-          <tr>
-          <% end %>
-            <td class="name-box">#<%= location.sort %> <%= location.name %></td>
-            <td>
-              <!-- 修改/隐藏/显示 -->
-              <div>
-              <%= link_to(up_admin_location_path(location), :method => :post, class: "btn btn-md btn-default sort-btn") do %>
-                <span class="fa fa-angle-up"></span>
-              <% end %>
-              <%= link_to(down_admin_location_path(location), :method => :post, class: "btn btn-md btn-default sort-btn") do %>
-                <span class="fa fa-angle-down"></span>
-              <% end %>
+          <% @categorys.each do |category| %>
+            <% if i%2 == 1%>
+              <tr>
+            <% end %>
+                <td class="name-box">#<%= category.sort %> <span class="<%= category.icon %>"></span> <%= category.name %></td>
+                <td class="action-box">
 
-              <%= link_to(edit_admin_location_path(location), class: "btn btn-md btn-default") do %>
-                <span class="fa fa-pencil"></span>
-              <% end %>
+                  <!-- 修改/隐藏/显示 -->
+                  <div>
+                    <%= link_to(up_admin_category_path(category), :method => :post, class: "btn btn-md btn-default sort-btn") do %>
+                      <span class="fa fa-angle-up"></span>
+                    <% end %>
+                    <%= link_to(down_admin_category_path(category), :method => :post, class: "btn btn-md btn-default sort-btn") do %>
+                      <span class="fa fa-angle-down"></span>
+                    <% end %>
 
-              <!-- 如果工作地点隐藏 -->
-              <% if location.is_hidden %>
-                <%= link_to(publish_admin_location_path(location), :method => :post, class: "btn btn-md btn-default show-btn") do %>
-                  <span class="fa fa-eye"></span>
-                <% end %>
+                    <!-- 如果系统预设锁定 -->
+                    <% if category.is_lock %>
+                      <span class="fa fa-pencil btn btn-md btn-default lock-btn" disabled="disabled"></span>
+                      <span class="fa fa-eye-slash btn btn-md btn-default lock-btn" disabled="disabled"></span>
 
-              <!-- 如果工作地点公开 -->
-              <% else %>
-                <%= link_to(hide_admin_location_path(location), :method => :post, class: "btn btn-md btn-default") do %>
-                  <span class="fa fa-eye-slash"></span>
-                <% end %>
-              <% end %>
-              </div>
-            </td>
-          <% if i%2 == 0%>
-          </tr>
-          <% end %>
-          <% i += 1 %>
+                    <!-- 如果类型没有锁定 -->
+                    <% else %>
+                      <%= link_to(edit_admin_category_path(category), class: "btn btn-md btn-default") do %>
+                        <span class="fa fa-pencil" disabled="disabled"></span>
+                      <% end %>
+
+                      <!-- 如果类型隐藏 -->
+                      <% if category.is_hidden %>
+                        <%= link_to(publish_admin_category_path(category), :method => :post, class: "btn btn-md btn-default show-btn") do %>
+                          <span class="fa fa-eye"></span>
+                        <% end %>
+
+                      <!-- 如果类型公开 -->
+                      <% else %>
+                        <%= link_to(hide_admin_category_path(category), :method => :post, class: "btn btn-md btn-default") do %>
+                          <span class="fa fa-eye-slash"></span>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </td>
+            <% if i%2 == 0%>
+              </tr>
+            <% end %>
+            <% i += 1 %>
           <% end %>
         </tbody>
       </table>

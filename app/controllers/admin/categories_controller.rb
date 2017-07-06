@@ -70,7 +70,7 @@ class Admin::CategoriesController < ApplicationController
         @categoryX.save
       end
 
-      redirect_to redirect_back(fallback_location: admin_categories_path)
+      redirect_back(fallback_location: admin_categories_path)
     end
 
     def down
