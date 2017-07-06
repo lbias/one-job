@@ -70,7 +70,7 @@ class JobsController < ApplicationController
     if !current_user.is_member_of?(@job)
       current_user.add_collection!(@job)
     end
-    redirect_to :back
+    redirect_back(fallback_location: jobs_path)
   end
 
   def remove
@@ -78,7 +78,7 @@ class JobsController < ApplicationController
     if current_user.is_member_of?(@job)
       current_user.remove_collection!(@job)
     end
-    redirect_to :back
+    redirect_back(fallback_location: jobs_path)
   end
 
   def search

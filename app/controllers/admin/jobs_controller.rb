@@ -91,14 +91,14 @@ class Admin::JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.is_hidden = false
     @job.save
-    redirect_to :back
+    redirect_back(fallback_location: admin_jobs_path)
   end
 
   def hide
     @job = Job.find(params[:id])
     @job.is_hidden = true
     @job.save
-    redirect_to :back
+    redirect_back(fallback_location: admin_jobs_path)
   end
 
 private

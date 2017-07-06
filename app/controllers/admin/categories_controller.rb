@@ -44,14 +44,14 @@ class Admin::CategoriesController < ApplicationController
       @category = Category.find(params[:id])
       @category.is_hidden = false
       @category.save
-      redirect_to :back
+      redirect_back(fallback_location: admin_categories_path)
     end
 
     def hide
       @category = Category.find(params[:id])
       @category.is_hidden = true
       @category.save
-      redirect_to :back
+      redirect_back(fallback_location: admin_categories_path)
     end
 
     def up
@@ -70,7 +70,7 @@ class Admin::CategoriesController < ApplicationController
         @categoryX.save
       end
 
-      redirect_to :back
+      redirect_to redirect_back(fallback_location: admin_categories_path)
     end
 
     def down
@@ -79,13 +79,13 @@ class Admin::CategoriesController < ApplicationController
       @category.sort += 1
       @category.save
 
-      # 如果有比当前排序大一个数字的数据时，将该数据排序 -1（排序位置交换） 
+      # 如果有比当前排序大一个数字的数据时，将该数据排序 -1（排序位置交换）
       if @categoryX.present?
         @categoryX.sort -= 1
         @categoryX.save
       end
 
-      redirect_to :back
+      redirect_back(fallback_location: admin_categories_path)
     end
 
   private

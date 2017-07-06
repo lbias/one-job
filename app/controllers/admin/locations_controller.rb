@@ -41,14 +41,14 @@ class Admin::LocationsController < ApplicationController
     @location = Location.find(params[:id])
     @location.is_hidden = false
     @location.save
-    redirect_to :back
+    redirect_back(fallback_location: admin_locations_path)
   end
 
   def hide
     @location = Location.find(params[:id])
     @location.is_hidden = true
     @location.save
-    redirect_to :back
+    redirect_back(fallback_location: admin_locations_path)
   end
 
   def up
@@ -56,7 +56,7 @@ class Admin::LocationsController < ApplicationController
     @locationX = Location.find_by(:sort => @location.sort - 1)
     @location.sort -= 1
 
-    # 排序数字必须大于 0 
+    # 排序数字必须大于 0
     if @location.sort > 0
       @location.save
     end
@@ -67,7 +67,7 @@ class Admin::LocationsController < ApplicationController
       @locationX.save
     end
 
-    redirect_to :back
+    redirect_back(fallback_location: admin_locations_path)
   end
 
   def down
@@ -82,7 +82,7 @@ class Admin::LocationsController < ApplicationController
       @locationX.save
     end
 
-    redirect_to :back
+    redirect_back(fallback_location: admin_locations_path)
   end
 
 private
