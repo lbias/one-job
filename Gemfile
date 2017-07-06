@@ -49,6 +49,7 @@ gem 'carrierwave'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'ransack'
+gem 'jquery-rails'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

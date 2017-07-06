@@ -11,6 +11,31 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require_tree .
+
+function goTop(min_height) {
+    $(".goTop").click(
+        function() {
+            $('html,body').animate({
+                scrollTop: 0
+            }, 700);
+        });
+    min_height=min_height?min_height:2500;
+    $(window).scroll(function() {
+        var s = $(window).scrollTop();
+        if (s > min_height) {
+            $(".goTop").fadeIn(100); //按钮出现时间（画面下移）
+        } else {
+            $(".goTop").fadeOut(200); //按钮消失时间（画面上移）
+        }
+    });
+}
+
+
+$(function() {
+    goTop();
+});
