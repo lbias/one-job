@@ -16,6 +16,7 @@ class User < ApplicationRecord
   end
 
   def website_admin?
+    is_admin
     is_website_admin
   end
 

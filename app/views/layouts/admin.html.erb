@@ -2,6 +2,10 @@
 <html>
   <head>
     <title>职赢网 - 企业专区</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,10 +20,11 @@
         <div class="row">
           <div class="col-md-2 nav-sidebar">
             <ul class="list-unstyled">
-               <li><%= link_to admin_jobs_path do %> <span class="fa fa-vcard-o"></span> <span>职位管理</span><% end %></li>
-               <% if current_user.website_admin? %>
-                 <li><%= link_to admin_locations_path do %> <span class="fa fa-location-arrow"></span> <span>工作地点管理</span><% end %></li>
-               <% end %>
+              <li><%= link_to admin_jobs_path do %> <span class="fa fa-vcard-o"></span> <span>职位管理</span><% end %></li>
+              <% if current_user.website_admin? %>
+                <li><%= link_to admin_locations_path do %> <span class="fa fa-location-arrow"></span> <span>工作地点管理</span><% end %></li>
+                <li><%= link_to admin_categories_path do %> <span class="fa fa-cogs"></span> <span>职位类型管理</span><% end %></li>
+              <% end %>
             </ul>
           </div>
           <div class="col-md-10">

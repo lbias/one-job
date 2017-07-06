@@ -35,7 +35,7 @@
                       <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
-                    <% if current_user.admin? %>
+                    <% if current_user.admin? || current_user.website_admin? %>
                       <li> <%= link_to("企业专区", admin_jobs_path) %> </li>
                       <li class="divider"> </li>
                     <% end %>
